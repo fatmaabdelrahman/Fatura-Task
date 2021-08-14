@@ -15,7 +15,9 @@
         "proengsoft/laravel-jsvalidation": "^4.4",
         "realrashid/sweet-alert": "^4.0",
         "spatie/laravel-permission": "^4.2",
-        "tymon/jwt-auth": "^1.0"
+        "tymon/jwt-auth": "^1.0",
+        "yajra/laravel-datatables": "^1.5",
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -36,7 +38,10 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "app/Helpers/helpers.php"
+        ]
     },
     "scripts": {
         "post-autoload-dump": [

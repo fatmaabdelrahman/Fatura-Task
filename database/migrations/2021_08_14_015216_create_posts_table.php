@@ -17,7 +17,6 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('description');
             $table->string('image');
-            $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

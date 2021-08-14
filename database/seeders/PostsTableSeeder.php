@@ -15,13 +15,12 @@ class PostsTableSeeder extends Seeder
     {
         \DB::table('posts')->delete();
 
-        \DB::table('cities')->insert(array (
+        \DB::table('posts')->insert(array (
             0 =>
                 array (
                     'id' => 1,
                     'description' => 'post number 1 for fatura Egypt',
-                    'image'=>'image/image.jpg',
-                    'user_id'=>1
+                    'image'=>asset('_admin/assets/images/logo.png'),
                 ),
         ));
     }

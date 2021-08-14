@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class UsersTableSeeder extends Seeder
 {
@@ -16,40 +17,18 @@ class UsersTableSeeder extends Seeder
 
         \DB::table('users')->delete();
 
-        \DB::table('users')->insert(array (
-            0 =>
-                array (
-                    'created_at' => NULL,
-                    'email' => 'fatura@test.com',
-                    'email_verified_at' => NULL,
-                    'id' => 1,
-                    'name' => 'test1',
-                    'password' => '123456',
-                    'remember_token' => NULL,
-                    'updated_at' => NULL,
-                ),
-            1 =>
-                array (
-                    'created_at' => NULL,
-                    'email' => 'fatura2@test.com',
-                    'email_verified_at' => NULL,
-                    'id' => 2,
-                    'name' => 'fatura2',
-                    'password' => '123456',
-                    'remember_token' => NULL,
-                    'updated_at' => NULL,
-                ),
-            2 =>
-                array (
-                    'created_at' => NULL,
-                    'email' => 'fatura3@test.com',
-                    'email_verified_at' => NULL,
-                    'id' => 3,
-                    'name' => 'fatura3',
-                    'password' => '123456',
-                    'remember_token' => NULL,
-                    'updated_at' => NULL,
-                ),
-        ));
+        $users = [
+            [
+                'name' => 'admin',
+                'email' => 'admin@admin.com',
+                'password' => '123456',
+            ],
+
+        ];
+
+        foreach ($users as $item) {
+            $user=  \App\Models\User::create($item);
+            $user->assignRole(Role::where('name','Super Admin')->first());
+        }
     }
 }

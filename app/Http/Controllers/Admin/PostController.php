@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\PostsDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\Post\PostRequest;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -12,9 +15,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(PostsDataTable $dataTable)
     {
-        //
+        return $dataTable->render('admin.posts.index');
     }
 
     /**
@@ -24,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.add');
     }
 
     /**
@@ -33,31 +36,16 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        Post::create($request->validated());
+        alert()->success('post added successfully !');
+        return redirect()->route('admin.posts.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function edit(Post $post)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return  view('admin.posts.edit')->with('post',$post);
     }
 
     /**
@@ -67,9 +55,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        $post->update($request->validated());
+        alert()->success('post edited successfully !');
+        return  back();
     }
 
     /**
@@ -78,8 +68,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        alert()->success('user deleted successfully !');
+
+        return  back();
     }
 }
