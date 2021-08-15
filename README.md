@@ -5,7 +5,7 @@ Required to build user authentication and authorization service
 
 
 ## Run Project
-- git clone **(https://github.com/fatmaabdelrahman/fleet-management-system.git)**
+- git clone **(https://github.com/fatmaabdelrahman/auth_service.git)**
 - composer update 
 -create .env file
 - copy .env example file in .env and set database name and password 
