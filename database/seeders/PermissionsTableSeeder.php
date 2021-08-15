@@ -40,37 +40,11 @@ class PermissionsTableSeeder extends Seeder
                 'title' => 'delete Role',
                 'route_name' => 'admin.roles.destroy'
             ],
-
-            //USERS
-            [
-                'name' => 'admin-list',
-                'guard_name' => 'web',
-                'title' => 'admins list',
-                'route_name' => 'admin.admins.index,admin.admins.show'
-            ],
-            [
-                'name' => 'admin-create',
-                'guard_name' => 'web',
-                'title' => 'add admins',
-                'route_name' => 'admin.admins.create,admin.admins.store'
-            ],
-            [
-                'name' => 'admin-edit',
-                'guard_name' => 'web',
-                'title' => 'update admins',
-                'route_name' => 'admin.admins.edit,admin.admins.update'
-            ],
-            [
-                'name' => 'admin-delete',
-                'guard_name' => 'web',
-                'title' => 'delete admin',
-                'route_name' => 'admin.admins.destroy'
-            ],
             [
                 'name' => 'users-list',
                 'guard_name' => 'web',
                 'title' => 'users list',
-                'route_name' => 'admin.users.list,admin.users.show'
+                'route_name' => 'admin.users.index,admin.users.show'
             ],
             [
                 'name' => 'users-create',
@@ -94,19 +68,19 @@ class PermissionsTableSeeder extends Seeder
                 'name' => 'post-list',
                 'guard_name' => 'web',
                 'title' => 'posts lost',
-                'route_name' => 'admin.post.index,admin.posts.show'
+                'route_name' => 'admin.posts.index,admin.posts.show,api.posts.index'
             ],
             [
                 'name' => 'post-create',
                 'guard_name' => 'web',
                 'title' => 'add post',
-                'route_name' => 'admin.posts.create,admin.posts.store'
+                'route_name' => 'admin.posts.create,admin.posts.store,api.posts.store'
             ],
             [
                 'name' => 'post-edit',
                 'guard_name' => 'web',
                 'title' => 'update post',
-                'route_name' => 'admin.posts.edit,admin.posts.update'
+                'route_name' => 'admin.posts.edit,admin.posts.update,api.posts.update'
             ],
             [
                 'name' => 'post-delete',
@@ -116,10 +90,6 @@ class PermissionsTableSeeder extends Seeder
             ],
 
         ];
-        foreach ($permissions as $permission) {
-
-            Permission::create($permission);
-
-        }
+        \DB::table('permissions')->insert($permissions);
     }
 }

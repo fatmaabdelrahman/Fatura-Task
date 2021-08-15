@@ -10,12 +10,12 @@
         <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-invert-colors"></i> <span>Roles and Permissions </span>
             <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
-            @if(auth()->user()->can('role-list'))
+           @can('role-list')
                 <li><a href="{{route('admin.roles.index')}}">All Roles</a></li>
-            @endif
-            @if(auth()->user()->can('role-create'))
+            @endcan
+            @can('role-create')
                 <li><a href="{{route('admin.roles.create')}}">Add New Role</a></li>
-            @endif
+            @endcan
         </ul>
     </li>
 @endif
@@ -25,12 +25,12 @@
         <a href="javascript:void(0);" class="waves-effect"><i
                 class="zmdi zmdi-collection-text"></i><span> Users </span> </a>
         <ul class="list-unstyled">
-            @if(auth()->user()->can('users-list'))
+            @can('users-list')
                 <li><a href="{{route('admin.users.index')}}">All Users</a></li>
-            @endif
-            @if(auth()->user()->can('users-create'))
+            @endcan
+            @can('users-create')
                 <li><a href="{{route('admin.users.create')}}">Add New User</a></li>
-            @endif
+                @endcan
 
         </ul>
     </li>
@@ -41,12 +41,12 @@
         <a href="javascript:void(0);" class="waves-effect"><i
                 class="zmdi zmdi-collection-text"></i><span> Posts </span> </a>
         <ul class="list-unstyled">
-            @if(auth()->user()->can('post-list') )
+            @can('post-list')
                 <li><a href="{{route('admin.posts.index')}}">All Posts</a></li>
-            @endif
-            @if(auth()->user()->can('post-create'))
+            @endcan
+            @can('post-create')
                 <li><a href="{{route('admin.posts.create')}}">Add New Post</a></li>
-            @endif
+            @endcan
         </ul>
     </li>
 @endif
