@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 
-class AutoCheckPermission
+class ApiAutoCheckPermission
 {
     /**
      * Handle an incoming request.
@@ -19,14 +19,13 @@ class AutoCheckPermission
     {
         $route_name = $request->route()->getName();
         $permission =Permission ::whereRaw("FIND_IN_SET ('$route_name',route_name)")->first();
-        dd($permission);
-        $user=auth()->user();
+        $user=auth('api')->user();
         if ($permission) {
             if ($user->can($permission->name) or  $user->hasRole('Super Admin')) {
                 return $next($request);
             }
-            abort(403);
+            return \responder::error('un authorized');
         }
-        abort(403);
+        return \responder::error('un authorized');
     }
 }

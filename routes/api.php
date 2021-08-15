@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group([], function () {
+Route::group(['as'=>'api.'], function () {
     Route::group(['prefix' => 'auth'], function () {
         Route::post('login', [\App\Http\Controllers\Api\Auth\AuthenticationController::class, 'login']);
         Route::post('register', [\App\Http\Controllers\Api\Auth\AuthenticationController::class, 'register']);
@@ -26,7 +26,7 @@ Route::group([], function () {
     });
 
 
-    Route::group(['middleware' => 'jwt.check'], function () {
+    Route::group(['middleware' =>[ 'jwt.check','api-check-permissions']], function () {
         Route::resources([
             'posts' => \App\Http\Controllers\Api\PostController::class,
         ]);
