@@ -21,7 +21,6 @@ Route::group([], function () {
         Route::post('register', [\App\Http\Controllers\Api\Auth\AuthenticationController::class, 'register']);
 
         Route::group(['middleware' => 'auth:api'], function () {
-//            dd("hi");
             Route::post('logout', [\App\Http\Controllers\Api\Auth\AuthenticationController::class, 'logout']);
         });
     });
