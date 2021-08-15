@@ -15,10 +15,13 @@ Required to build user authentication and authorization service
 - php artisan db:seed
 - php artisan serve
 - open it in browser
-- login Credentials (this user has role of Super Admin )
+- login Credentials (Super Admin)
   - email :admin@admin.com
   - password : 123456
-- **[Api collection ](https://www.getpostman.com/collections/ff026b0803beda0fa4e1)**
+  - login Credentials (un authorize User)
+  - email : task@fatura.com
+  - password : 123456
+- **[Api collection ](https://www.getpostman.com/collections/3fb80fc96a9f9f2528b8)**
 
 
 ## Documentations Used In task

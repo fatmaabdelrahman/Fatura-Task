@@ -23,12 +23,18 @@ class UsersTableSeeder extends Seeder
                 'email' => 'admin@admin.com',
                 'password' => '123456',
             ],
+            [
+                'name' => 'fatura',
+                'email' => 'task@fatura.com',
+                'password' => '123456',
+            ],
 
         ];
 
         foreach ($users as $item) {
-            $user=  \App\Models\User::create($item);
-            $user->assignRole(Role::where('name','Super Admin')->first());
+            $user = \App\Models\User::create($item);
+            $admin=$user->first();
+            $admin->assignRole(Role::where('name', 'Super Admin')->first());
         }
     }
 }

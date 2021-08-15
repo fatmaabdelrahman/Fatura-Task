@@ -1,7 +1,6 @@
 <?php
-
-use App\Http\Controllers\Api\Auth\AuthController;
-use Illuminate\Http\Request;
+namespace App\Http\Controllers\Api;
+use App\Http\Controllers\Api\Auth\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,18 +16,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['as'=>'api.'], function () {
     Route::group(['prefix' => 'auth'], function () {
-        Route::post('login', [\App\Http\Controllers\Api\Auth\AuthenticationController::class, 'login']);
-        Route::post('register', [\App\Http\Controllers\Api\Auth\AuthenticationController::class, 'register']);
+        Route::post('login', [AuthenticationController::class, 'login']);
+        Route::post('register', [AuthenticationController::class, 'register']);
 
         Route::group(['middleware' => 'auth:api'], function () {
-            Route::post('logout', [\App\Http\Controllers\Api\Auth\AuthenticationController::class, 'logout']);
+            Route::post('logout', [AuthenticationController::class, 'logout']);
         });
     });
 
 
     Route::group(['middleware' =>[ 'jwt.check','api-check-permissions']], function () {
         Route::resources([
-            'posts' => \App\Http\Controllers\Api\PostController::class,
+            'posts' =>PostController::class,
         ]);
     });
 });
