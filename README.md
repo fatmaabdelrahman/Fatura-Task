@@ -21,7 +21,7 @@ Required to build user authentication and authorization service
   - login Credentials (un authorize User)
   - email : task@fatura.com
   - password : 123456
-- **[Api collection ](https://www.getpostman.com/collections/3fb80fc96a9f9f2528b8)**
+- **[Api collection ](https://www.getpostman.com/collections/cb682c5501e016acc902)** (with Examples)
 
 
 ## Documentations Used In task

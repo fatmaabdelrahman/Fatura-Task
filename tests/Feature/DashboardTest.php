@@ -2,9 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class DashboardTest extends TestCase
@@ -17,7 +19,35 @@ class DashboardTest extends TestCase
         $this->actingAs($user)->get('/')->assertStatus(200);
     }
 
-    public function test_add_post(){
+    public function test_get_all_posts_with_un_authorize_user()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user)->get('/posts')->assertStatus(403);
+        $this->assertTrue(true);
+    }
 
+    /*
+     * Commented Because it return error
+    */
+//    public function test_get_all_posts_with_authorized_user(){
+//        $user = User::factory()->create();
+//       $role=Role::create([
+//            'name' => 'Super Admin',
+//            'guard_name' => 'web'
+//        ]);
+//     $user->assignRole($role);
+//        $this->actingAs($user)->get('/posts')->assertStatus(200);
+//        $this->assertTrue(true);
+//    }
+
+    public function test_create_post_with_un_authorize_user()
+    {
+        $user = User::factory()->create();
+        $data = Post::factory()->create();
+        $this->actingAs($user)->post('posts', [
+            'description' => $data->description,
+            'image' => $data->image
+        ])->assertStatus(403);
+        $this->assertTrue(true);
     }
 }

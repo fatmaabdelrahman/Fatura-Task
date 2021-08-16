@@ -24,8 +24,8 @@ class ApiAutoCheckPermission
             if ($user->can($permission->name) or  $user->hasRole('Super Admin')) {
                 return $next($request);
             }
-            return \responder::error('un authorized');
+            return \responder::error('Sorry You are not authorized to do this action');
         }
-        return \responder::error('un authorized');
+        return \responder::error('Sorry You are not authorized to do this action');
     }
 }
