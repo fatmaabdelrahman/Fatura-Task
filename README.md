@@ -23,6 +23,8 @@ Required to build user authentication and authorization service
   - password : 123456
 - **[Api collection ](https://www.getpostman.com/collections/cb682c5501e016acc902)** (with Examples)
 
+## Run Test
+php artisan test
 
 ## Documentations Used In task
 
